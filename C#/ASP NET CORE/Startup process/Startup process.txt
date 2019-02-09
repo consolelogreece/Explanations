@@ -1,0 +1,36 @@
+Typical start up process in ASP NET CORE 2.1
+
+------ 
+Key
+
+ASP NET CORE = ASP
+-----
+
+-------------------
+Stage 1 - Entry:
+
+ASP enters program.cs Main
+-------------------
+Stage 2 - Create web host:
+
+By default, ASP creates "default web host" (see note 1) via the WebHost static class.
+You can add custom configuration stuff through extension methods. For instance adding application insights you can use " .UseApplicationInsights()".
+ASP requires you register your startup class here, with the UseStartup extension method. Your startup class is used to configure your request pipeline.
+
+You may ask; What does "default web host" do?
+Simply, default web host just reduces what was once fairly common boilerplate into a single method, making program.cs cleaner. 
+If you're interested in seeing exactly what it does, see: https://github.com/aspnet/MetaPackages/blob/c25e5cdd082a9d3419c85141cd56b08714361d3b/src/Microsoft.AspNetCore/WebHost.cs#L148
+-------------------
+Stage 3 - Configure services (Optional):
+
+In your startup.cs class, ASP invokes the "ConfigureServices" method, passing in an object of type IServiceCollection.
+This stage is where you would register services to ASP's IoC container, to be used for dependency injection.
+As stated, this is optional, you could remove this method from startup entirely if you so desired.
+-------------------
+Stage 4 - Configure pipeline:
+
+ASP invokes the "Configure" method in your startup class, you are given an object of type IApplicationBuilder via DI to set up the pipeline.
+This stage is where you would set up your middleware. 
+-------------------
+
+Now everything has been configured, your app should be listening for requests and will handle them as specified in your request pipeline.
