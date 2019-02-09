@@ -1,0 +1,20 @@
+Launch Settings
+
+----------
+key
+launchSettings.json = LS
+Visual Studio = VS
+dotnet cli = CLI
+----------
+
+The LS configuration file stores launch profiles that VS/CLI needs to launch the app; LS is VS/CLI specific.
+
+By default, LS has two profiles. "IIS Express" and "Name of your project". IIS will launch your app on an IIS server, where as using the latter, which will have the command name "Project" will initiate dotnet cli and launch your app on a Kestrel server.
+
+Profile fields:
+	commandName: Maps how project should be started. "IISExpress" launches IIS, "Project" launches Kestrel.
+	launchBrowser: boolean indicating whether your browser should be opened.
+	environmentVariables: global variables used inside your project. example: "ASPNETCORE_ENVIRONMENT" stores whether your project is in development/staging/production.
+
+
+Note: LS is only used in your local dev environment. Any settings needed in deployment should be stored in appsettings.json.

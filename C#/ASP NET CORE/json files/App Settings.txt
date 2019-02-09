@@ -1,0 +1,19 @@
+App Settings
+
+-------
+key
+App Settings = AS
+-------
+
+AS contains data in key value pairs. 
+	For instance:
+		"myKey": "myValue"
+		Accessing the AS.myKey would return "myValue".
+	This is typically used to store things such like:
+		User secrets.
+		DB connection strings.
+		Environment variables.
+
+To access AS from you asp net core project, a service "IConfiguration" can be used; you can use it like dictionary, i.e. _config["myKey"].
+
+Note: If there is an environment specific AS file, such as "appsettings.Development.json", the config stored here will overwrite the general AS file if that environment is being used.
