@@ -18,7 +18,7 @@ You can add custom configuration stuff through extension methods. For instance a
 ASP requires you register your startup class here, with the UseStartup extension method. Your startup class is used to configure your request pipeline.
 
 You may ask; What does "default web host" do?
-Simply, default web host just reduces what was once fairly common boilerplate into a single method, making program.cs cleaner. 
+Simply, default web host just reduces what was once fairly common boilerplate into a single method, making program.cs cleaner. For instance, defaultwebhost will automatically load the appsettings.json file and load environment variables.
 If you're interested in seeing exactly what it does, see: https://github.com/aspnet/MetaPackages/blob/c25e5cdd082a9d3419c85141cd56b08714361d3b/src/Microsoft.AspNetCore/WebHost.cs#L148
 -------------------
 Stage 3 - Configure services (Optional):
@@ -31,6 +31,7 @@ Stage 4 - Configure pipeline:
 
 ASP invokes the "Configure" method in your startup class, you are given an object of type IApplicationBuilder via DI to set up the pipeline.
 This stage is where you would set up your middleware. 
+See my Middleware demonstration for more information on middleware: https://github.com/consolelogreece/Demonstrations/tree/master/C%23/ASP%20NET%20CORE/Middleware
 -------------------
 
 Now everything has been configured, your app should be listening for requests and will handle them as specified in your request pipeline.
